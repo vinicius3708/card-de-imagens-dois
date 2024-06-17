@@ -1,0 +1,66 @@
+ body {
+   margin: 0; /* Define a margem do corpo como 0 para remover qualquer margem padrão */
+   min-height: 100vh; /* Define a altura mínima do corpo como 100% da altura da viewport */
+   display: grid; /* Define o tipo de exibição como grid para alinhar os elementos no centro da página */
+   place-items: center; /* Centraliza os itens horizontal e verticalmente na página */
+   background: blue; /* Define o fundo da página como azul */
+}
+
+.gallery {
+   --size: 100px; /* Define uma variável de tamanho para os títulos da galeria */
+   display: grid; /* Define o tipo de exibição  como grid para organizar as imagens */
+   grid-template-columns: repeat(6, var(--size)); /* Define o número de colunas e a largura de cada coluna */
+   grid-template-rows: var(--size); /* Define a altura automática das linhas com base no tamanho especificado */
+   margin-bottom: var(--size); /* Define uma margem inferior igual ao tamanho dos itens */
+   place-items: start center; /* Alinha os itens no início horizontal e centraliza-os verticalmente */
+   gap: 5px; /* Define o espaçamento entre os itens */
+
+   &:has(:hover) img:not(:hover), /* Aplica um filtro de escurecimento nas imagens quando o mouse está fora da galeria */
+   &:has(:focus) img:not(:focus) {  
+    filter: brightness(0.5) contrast(0.5) /* Reduz o brilho e o contraste das imagens */
+   }
+}
+
+   & img {
+    object-fit: cover; /* Ajusta o dimensionamento da imagem para cobrir o espaço do contêiner */
+    width: calc(var(--size)* 2); /* Define a largura da imagem como o dobro do tamanho especializado */
+    height: calc(var(--size)* 2); /* Define a altura da imagem como o dobro do tamanho especializado */
+    clip-path: path( /* Define um caminho de recorte para a imagem */ "M90,10 C100,0 100,0 110,10 190,90 190,90 190,90 200,100 200,100 190,110 190,110 110,190 100,200 100,200 90,190 90,190 90,190 10,110 10,110 0,100 0,100 10,90Z");
+    transition: clip-path 0.30s filter 0.90s; /* Adiciona transições suaves para a mudança de caminho de recorte e filtro */
+    grid-column: auto / span 2; /* Define a posição e a largura da imagem na grade */
+    border-radius: 5px; /* Adiciona uma borda arredondada às imagens */
+    
+   &:nth-child(5n - 1) { /* Aplica estilos especificos á imagem a cada quinta imagem na galeria */
+      grid-column: 2 / span 2; /* Define a posição e a largura da imagem na grade */
+    }
+
+   &:hover, /* Aplica estilos quando o mouse está sobre a imagem */
+   &:focus { /* Aplica estilos quando a imagem recebe foco */
+      clip-path: path( /* Altera o caminho de recorte da imagem */ "M0,0 C0,0 200,0 200,0 200,0 200,100 200,100 200,100 200,200 200,200 200,200 100,200 100,200 100,200 0,200 0,200 0,200 0,100 0,100 0,100 0,100Z");
+      z-index: 1; /* Define a ordem de empilhamento da imagem */
+      transition: clip-path 0.25s, filter 0.25s; /* Adiciona transições suaves para a mudança de caminho de recorte e filtro */
+    } 
+    
+    &:focus { 
+      outline: 1px dashed blueviolet; /* Adiciona uma borda tracejada blueviolet ao redor da imagem quando ela recebe foco */
+      outline-offset: -5px; /* Define a distância entre a borda tracejada e a imagem */
+    }
+}
+
+
+/* Vinícius de Lucena Araújo */ /* Comentário com informações sobre o autor do código */
+
+     
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
